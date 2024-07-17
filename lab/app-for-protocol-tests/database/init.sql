@@ -1,0 +1,1 @@
+create table counter(id int);

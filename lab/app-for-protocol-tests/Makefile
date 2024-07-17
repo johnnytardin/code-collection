@@ -1,0 +1,17 @@
+network:
+	@if [ $(shell docker network ls -q --filter name=app-for-protocol-tests | wc -l) -eq 0 ]; then docker network create app-for-protocol-tests; fi
+
+start: network
+	@docker-compose -f docker-compose.yml up -d --build
+
+stop:
+	@docker-compose -f docker-compose.yml down
+
+status:
+	@docker-compose -f docker-compose.yml ps
+
+clean:
+	@sudo rm -rf .tmp/
+
+restart:
+	@make stop start

@@ -1,0 +1,37 @@
+version: '3.5'
+
+networks:
+  counter:
+    external:
+      name: counter
+
+services:
+  api:
+    image: api
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - 8080:8080
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/app/
+    env_file:
+      - .env
+    networks:
+      - counter
+    depends_on:
+      - redis
+
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - ${PWD}/.tmp/data:/data
+    networks:
+      - counter
+
+
+

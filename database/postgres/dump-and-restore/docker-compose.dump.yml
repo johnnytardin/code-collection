@@ -1,0 +1,13 @@
+version: '3'
+services:
+  dump:
+    image: postgres:latest
+    environment:
+      - PGPASSWORD=password
+    command: >
+      bash -c "pg_dump -h server -U user -d database -T nodestore_node -Fc -f /backup/database"
+
+      # dump only ddl
+      # bash -c "pg_dump -h server -U user -d database -s -f /backup/ddl"
+    volumes:
+      - ./backup:/backup/

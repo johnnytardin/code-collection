@@ -1,0 +1,23 @@
+version: '3.5'
+
+networks:
+  keda-restart:
+    external:
+      name: keda-restart
+
+services:
+  keda-restart:
+    image: keda-restart
+    build:
+      dockerfile: Dockerfile
+      context: .
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/app/
+    env_file:
+      - .env
+    networks:
+      - keda-restart
+
+

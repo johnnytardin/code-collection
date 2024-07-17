@@ -1,0 +1,23 @@
+version: '3.5'
+
+networks:
+  otlp-tests:
+    external:
+      name: otlp-tests
+
+services:
+  api:
+    image: api
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - 8080:8080
+    tty: true
+    stdin_open: true
+    env_file:
+      - .env
+    networks:
+      - otlp-tests
+
+

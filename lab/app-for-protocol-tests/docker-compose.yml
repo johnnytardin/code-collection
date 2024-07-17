@@ -1,0 +1,48 @@
+version: '3.5'
+
+networks:
+  app-for-protocol-tests:
+    external:
+      name: app-for-protocol-tests
+
+services:
+  api:
+    image: api
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - 8080:8080
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/app/
+    env_file:
+      - .env
+    networks:
+      - app-for-protocol-tests
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_DB=test
+    volumes:
+      - ${PWD}/.tmp/pg_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - app-for-protocol-tests
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U test"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+
+

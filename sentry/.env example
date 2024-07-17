@@ -1,0 +1,4 @@
+DB_USER="sentry"
+DB_PASSWD=""
+DB_NAME="sentry" 
+DB_HOST=""

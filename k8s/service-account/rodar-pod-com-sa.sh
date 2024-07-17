@@ -1,0 +1,1 @@
+kubectl run -i --tty --rm --namespace 088c7ee0-8e2f-4584-8be0-6d1e07ca848f --overrides='{ "spec": { "serviceAccount": "a3d758f1-875b-4554-8bf7-396ebcdb2cab" }  }' --image=alpine:latest alpine-4 --annotations="linkerd.io/inject=disabled" -- sh

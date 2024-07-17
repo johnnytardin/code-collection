@@ -1,0 +1,1 @@
+kubectl port-forward -n 61539731-ec64-4872-8307-440ba99494a6 $(kubectl get pods -n 61539731-ec64-4872-8307-440ba99494a6 --selector "app=272eb2e3-8633-475b-9b13-d609b38bf3cd" --output=name) 9000:9000

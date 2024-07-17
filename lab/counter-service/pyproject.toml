@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "counter"
+version = "0.1.0"
+description = ""
+authors = ["Johnny Tardin <johnnytardin@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+redis = "^4.1.2"
+Flask = "^2.0.2"
+python-decouple = "^3.5"
+gevent = "^21.12.0"
+
+[tool.poetry.dev-dependencies]
+ipdb = "^0.13.9"
+black = "^22.1.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

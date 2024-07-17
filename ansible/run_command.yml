@@ -1,0 +1,8 @@
+---
+- name: Transfer and execute a script.
+  hosts: all
+  remote_user: ec2-user
+  tasks:
+  - name: Run a script
+    script: ./install.sh
+    become: yes

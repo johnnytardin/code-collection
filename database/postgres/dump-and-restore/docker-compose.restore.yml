@@ -1,0 +1,14 @@
+version: '3'
+services:
+  restore:
+    image: postgres:latest
+    environment:
+      - PGPASSWORD=password
+    command: >
+      bash -c "pg_restore --verbose --clean --no-acl -h server -U postgres -d database -Fc /backup/sentdatabasery.dump"
+
+      # restore ddl
+      # bash -c "psql -h server -U postgres -d database -f /backup/database-ddl.dump"
+
+    volumes:
+      - ./backup:/backup/
