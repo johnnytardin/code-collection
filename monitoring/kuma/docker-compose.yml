@@ -1,0 +1,15 @@
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:latest
+    restart: always
+    ports:
+      - "3001:3001"  
+    volumes:
+      - uptime-kuma-data:/app/data  
+    environment:
+      - NODE_ENV=production
+      - TZ=America/Sao_Paulo
+
+volumes:
+  uptime-kuma-data:
+    driver: local
